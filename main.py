@@ -21,7 +21,11 @@ def silent(indata, outdata, frames, time, status):
     else:
         current_word = 'talking'
     last_word.append(current_word)
+<<<<<<< HEAD
     t.sleep(0.1)
+=======
+    t.sleep(0.05)
+>>>>>>> Initial commit
 
 
 def cv2():
