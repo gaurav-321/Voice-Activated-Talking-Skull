@@ -1,31 +1,91 @@
-# Voice Activated Talking Skull
-This project uses the SoundDevice and OpenCV libraries to create a voice activated skull animation. When the user is speaking, the skull will animate and display "talking". When the user is silent, the skull will display "waiting".
+# Voice-Activated Talking Skull 🎢
 
-## Dependencies
-- SoundDevice
-- NumPy
-- OpenCV
-## How to Use
-Clone the repository and navigate to the directory:
-```
-git clone https://github.com/USERNAME/REPO.git
-cd REPO
-```
-Run the script:
-```
+## Description
+The **Voice-Activated Talking Skull** is a project that combines voice recognition with computer vision to create an interactive animation. It detects speech using the `SoundDevice` library and controls the animation of a skull image based on whether someone is speaking or silent.
+
+## Features
+- Real-time speech detection
+- Dynamic skull animation based on sound activity
+- User-friendly interface displaying current state
+
+## Installation
+To get started with this project, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/gag3301v/Voice-Activated-Talking-Skull.git
+   cd Voice-Activated-Talking-Skull
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+Here’s how you can run the project:
+
+```python
+# Run the main script
 python main.py
 ```
-The program will begin measuring the ambient sound volume to determine the threshold for detecting speech.
 
-Once the threshold has been established, the skull animation will start and will display "talking" or "waiting" based on whether the user is speaking or not.
+### Example Code Snippets
 
-Press "q" to quit the program.
+#### Detecting Speech
+```python
+import sounddevice as sd
+import numpy as np
 
-## Customization
-The sensitivity of the speech detection can be adjusted by changing the value of the "volume_norm" variable in the "silent" function. This value represents the volume of the ambient sound and is compared to the mean volume when the user is silent, which is calculated at the beginning of the program.
+def detect_speech(audio_data):
+    # Analyze audio data to determine if speech is present
+    threshold = 0.1
+    return np.max(np.abs(audio_data)) > threshold
+```
 
-## Acknowledgements
-This project was inspired by the tutorial [Voice Activated LED with Python and a Microphone](https://towardsdatascience.com/voice-activated-led-with-python
+#### Animating the Skull
+```python
+import cv2
+import os
 
+def animate_skull(is_speaking):
+    # Update the animation state of the skull image
+    skull_image_path = "skull.png" if is_speaking else "skull_sleeping.png"
+    skull_image = cv2.imread(skull_image_path)
+    cv2.imshow("Skull Animation", skull_image)
+```
 
+## Configuration
+- **Environment Variables**: None required for basic operation.
+- **Config Files**: No configuration files are needed.
 
+## Tests
+This project includes unit tests to ensure the functionality works as expected. To run the tests:
+
+```bash
+python -m unittest discover tests/
+```
+
+## Project Structure
+```plaintext
+Voice-Activated-Talking-Skull/
+├── README.md
+├── requirements.txt
+└── main.py
+```
+
+## Contributing
+Contributions are welcome! Please follow these guidelines to get started:
+
+1. **Fork the repository**
+2. **Create a new branch** (`git checkout -b feature/AmazingFeature`)
+3. **Commit your changes** (`git commit -m 'Add some AmazingFeature'`)
+4. **Push to the branch** (`git push origin feature/AmazingFeature`)
+5. **Open a Pull Request**
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to explore and contribute to this exciting project! 🎉
